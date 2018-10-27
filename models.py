@@ -64,6 +64,27 @@ def segnet(n_classes, input_height=161, input_width=216):
     return model
 
 def unet_res(n_classes = 1, start_neurons = 16, DropoutRatio = 0.5, img_height=161,img_width=216):
+    
+    def BatchActivate(x):
+        x = BatchNormalization()(x)
+        x = Activation('relu')(x)
+        return x
+
+    def convolution_block(x, filters, size, strides=(1,1), padding='same', activation=True):
+        x = Conv2D(filters, size, strides=strides, padding=padding)(x)
+        if activation == True:
+            x = BatchActivate(x)
+        return x
+
+    def residual_block(blockInput, num_filters=16, batch_activate = False):
+        x = BatchActivate(blockInput)
+        x = convolution_block(x, num_filters, (3,3) )
+        x = convolution_block(x, num_filters, (3,3), activation=False)
+        x = Add()([x, blockInput])
+        if batch_activate:
+            x = BatchActivate(x)
+        return x
+
     # 101 -> 50
     input_layer = Input((img_height, img_width, 3))
     zero_pad = ZeroPadding2D(padding=((7,8),(4,4)))(input_layer)

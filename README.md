@@ -4,3 +4,5 @@ Crop Weed Field Image Data-set (CWFID) contains 60 on-field images of carrot cro
 The Crop/Weed Field Image Dataset (CWFID) accompanies the following publication: "Sebastian Haug, Jörn Ostermann: A Crop/Weed Field Image Dataset for the Evaluation of Computer Vision Based Precision Agriculture Tasks, CVPPP 2014 Workshop, ECCV 2014"
 
 This dataset comprises field images, vegetation segmentation masks and crop/weed plant type annotations. The paper provides details, e.g. on the field setting, acquisition conditions, image and ground truth data format.
+
+![](https://github.com/Anki0909/CWFID-Image-Segmentation/blob/master/Untitled.png)
